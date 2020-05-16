@@ -1,0 +1,30 @@
+﻿<Brushes>
+	<Brush Name="BannerBuff.TestMovie.Title" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center" TextVerticalAlignment="Center">
+		<Styles>
+			<Style Name="Default" FontColor="#C7AD7CFF" TextGlowColor="#000000FF" TextOutlineColor="#000000FF" TextOutlineAmount="0.3" TextGlowRadius="0"
+				   TextBlur="0.1" FontSize="40" TextShadowAngle="60"/>
+		</Styles>
+	</Brush>
+
+	<Brush Name="BannerBuff.TestMovie.Description" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Left" TextVerticalAlignment="Center" FontSize="24" >
+		<Styles>
+			<Style Name="Default" FontColor="#FFCF9AFF" TextBlur="0"  TextShadowAngle="0" TextAlphaFactor="0.8" TextGlowColor="#FFFFFF00" TextOutlineColor="#FFFFFF00"
+				   TextOutlineAmount="0" TextGlowRadius="0" />
+		</Styles>
+	</Brush>
+	
+	<Brush Name="BannerBuff.TestMovie.Button.Done" BaseBrush="Popup.Button.Base">
+		<Layers>
+			<BrushLayer Name="Default" Sprite="StdAssets\Popup\button_default" IsHidden="true" />
+			<BrushLayer Name="Hovered" Sprite="StdAssets\Popup\button_default_hover" IsHidden="true" />
+		</Layers>
+	</Brush>
+
+	<Brush Name="BannerBuff.TestMovie.Button.Cancel" BaseBrush="Popup.Button.Base">
+		<Layers>
+			<BrushLayer Name="Default" Sprite="StdAssets\Popup\done_button" IsHidden="true" />
+			<BrushLayer Name="Hovered" Sprite="StdAssets\Popup\done_button_hover" IsHidden="true" />
+		</Layers>
+	</Brush>
+
+</Brushes>

@@ -1,0 +1,20 @@
+﻿<Prefab>
+	<Constants>
+
+	</Constants>
+	<Window>
+		<Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" PositionXOffset="-5" PositionYOffset="-70">
+			<Children>
+				
+				<Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="50" HorizontalAlignment="Left" VerticalAlignment="Center">
+					<Children>
+
+						<TextWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="50" HorizontalAlignment="Left" VerticalAlignment="Center" Text="@ResourceText" />
+						
+					</Children>
+				</Widget>
+
+			</Children>
+		</Widget>
+	</Window>
+</Prefab>

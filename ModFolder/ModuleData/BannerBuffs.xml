@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBuff xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Buff>
+		<CostAmount>5</CostAmount>
+		<CostResourceType>Magicka</CostResourceType>
+		<Name>Party Speed Buff</Name>
+		<Description>Provides a speed boost of 2 units for the cost of 5 magicka per hour.</Description>
+		<IconPath />
+		<stringID>bannerbuff_partyspeedbuff_1</stringID>
+		<BuffCostType>OneOff</BuffCostType>
+	</Buff>
+	<Buff>
+		<CostAmount>6</CostAmount>
+		<CostResourceType>Magicka</CostResourceType>
+		<Name>Extra Party Speed Buff</Name>
+		<Description>Provides a speed boost of 3 units for the cost of 5 magicka per hour.</Description>
+		<IconPath />
+		<stringID>bannerbuff_partyspeedbuff_2</stringID>
+		<BuffCostType>Continous</BuffCostType>
+	</Buff>
+	<Buff>
+		<CostAmount>7</CostAmount>
+		<CostResourceType>Magicka</CostResourceType>
+		<Name>Mad Party Speed Buff</Name>
+		<Description>Provides a speed boost of 4 units for the cost of 5 magicka per hour.</Description>
+		<IconPath />
+		<stringID>bannerbuff_partyspeedbuff_3</stringID>
+		<BuffCostType>Continous</BuffCostType>
+	</Buff>
+</ArrayOfBuff>

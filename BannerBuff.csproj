@@ -66,10 +66,6 @@
       <HintPath>%(Identity)</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ModLib.Definitions, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Vendor\ModLib.Definitions.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -85,21 +81,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\GauntletResourceView.cs" />
     <Compile Include="Screens\GauntletResourceViewVM.cs" />
-    <Compile Include="Services\BuffManager.cs" />
-    <Compile Include="Services\ResourceManager.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="TypeDefinitions\BuffCostTypes.cs" />
-    <Compile Include="TypeDefinitions\BuffPatch.cs" />
     <Compile Include="TypeDefinitions\HeroBuffState.cs" />
     <Compile Include="TypeDefinitions\Buff.cs" />
     <Compile Include="TypeDefinitions\ResourceState.cs" />
-    <Compile Include="TypeDefinitions\ResourceTypes.cs" />
     <Content Include="ModFolder\GUI\Brushes\Brushes.xml" />
     <Content Include="ModFolder\GUI\Prefabs\ResourceMapWidget.xml" />
     <Content Include="ModFolder\ModuleData\BannerBuffs.xml" />
     <Content Include="Readme.txt" />
     <Content Include="ModFolder\SubModule.xml" />
-    <Content Include="Vendor\ModLib.Definitions.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TaleWorlds.SaveSystem;
 
 namespace BannerBuff.TypeDefinitions
 {
+    [SaveableEnum(77711004)]
     public enum BuffCostType
     {
         OneOff,

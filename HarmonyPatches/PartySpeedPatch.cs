@@ -1,19 +1,26 @@
-﻿using BannerBuff.TypeDefinitions;
-using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HarmonyLib;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
+using TaleWorlds.Localization;
 
 namespace BannerBuff.HarmonyPatches
 {
-    public class PartySpeedPatch : BuffPatch
+    [HarmonyPatch(typeof(MobileParty))]
+    public class PartySpeedPatch
     {
-        public override void PostFix(ref object __result)
+        [HarmonyPostfix]
+        [HarmonyPatch("ComputeSpeed")]
+        public static void PostFix1(ref float __result, MobileParty __instance)
         {
-            __result = 2;
+            __result += 3f;
         }
+
+        [HarmonyPostfix]
+        [HarmonyPatch("SpeedExplanation", MethodType.Getter)]
+        public static void PostFix2(ref StatExplainer __result, MobileParty __instance)
+        {
+            __result.AddLine("Active Speed Buff", 3f, StatExplainer.OperationType.Add);
+        }
+
     }
 }

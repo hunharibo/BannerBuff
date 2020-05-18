@@ -1,4 +1,4 @@
-﻿using ModLib.Definitions;
+﻿/*using ModLib.Definitions;
 using ModLib.Definitions.Attributes;
 using System.Xml.Serialization;
 
@@ -35,3 +35,4 @@ namespace BannerBuff.Settings
         public float SomeOtherMultiplier { get; set; } = 1.5f;
     }
 }
+*/

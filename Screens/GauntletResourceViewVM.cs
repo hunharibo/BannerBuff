@@ -1,5 +1,6 @@
-﻿using BannerBuff.Services;
+﻿using BannerBuff.Behaviours;
 using BannerBuff.TypeDefinitions;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 
 namespace BannerBuff.Screens
@@ -27,7 +28,14 @@ namespace BannerBuff.Screens
 
         public void Refresh()
         {
-            this.ResourceText = ResourceType.Magicka.ToString() + ": " + ResourceManager.Instance.GetResourceForMainHero(ResourceType.Magicka).CurrentAmount.ToString();
+            if(Hero.MainHero != null)
+            {
+                var state = ResourceManager.Instance.GetResourceForMainHero();
+                if(state != null)
+                {
+                    this.ResourceText = ResourceState.ResourceName + ": " + state.CurrentAmount.ToString();
+                }
+            }
         }
     }
 }

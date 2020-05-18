@@ -1,10 +1,6 @@
 ﻿using BannerBuff.Behaviours;
-using BannerBuff.Services;
 using HarmonyLib;
-using System.Linq;
-using System.Reflection;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 
@@ -18,6 +14,7 @@ namespace BannerBuff
         protected override void OnSubModuleLoad() 
         {
             Harmony harmony = new Harmony("mod.harmony.bannerbuff");
+            harmony.PatchAll();
         }
 
         protected override void OnSubModuleUnloaded() { }
@@ -37,16 +34,10 @@ namespace BannerBuff
             }
         }
 
-        protected override void OnApplicationTick(float dt)
-        {
-            base.OnApplicationTick(dt);
-            ResourceManager.Instance.OnApplicationTick(dt);
-        }
-
         private void AddBehaviours(CampaignGameStarter starter)
         {
-            starter.AddBehavior(new ResourceManagerBehaviour());
-            starter.AddBehavior(new BuffManagerBehaviour());
+            starter.AddBehavior(ResourceManager.Instance);
+            starter.AddBehavior(BuffManager.Instance);
         }
     }
 }

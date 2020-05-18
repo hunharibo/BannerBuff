@@ -13,6 +13,7 @@ namespace BannerBuff.Behaviours
     {
         private Dictionary<Hero, ResourceState> _dictionary = new Dictionary<Hero, ResourceState>();
         private bool _isMapOpen = false;
+        internal bool IsMapOpen { get => _isMapOpen; }
         public event EventHandler<ResourceChangedEventArgs> onResourceAmountChanged;
         private GauntletResourceView _uiView;
 
@@ -50,7 +51,7 @@ namespace BannerBuff.Behaviours
 
         private void onTick(float obj)
         {
-            if (!this._isMapOpen && ScreenManager.TopScreen is MapScreen)
+            if (!this.IsMapOpen && ScreenManager.TopScreen is MapScreen)
             {
                 this._isMapOpen = true;
                 this.ToggleShowUI();
@@ -159,7 +160,7 @@ namespace BannerBuff.Behaviours
             try
             {
                 var screen = ScreenManager.TopScreen;
-                if (this._isMapOpen && screen is MapScreen)
+                if (this.IsMapOpen && screen is MapScreen)
                 {
                     var mapscreen = screen as MapScreen;
                     if (mapscreen.GetMapView<GauntletResourceView>() == null)

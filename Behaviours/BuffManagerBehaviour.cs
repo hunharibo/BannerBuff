@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.SaveSystem;
 
@@ -21,6 +23,18 @@ namespace BannerBuff.Behaviours
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, onHourlyTick);
             CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, onGameLoaded);
             CampaignEvents.OnNewGameCreatedEvent2.AddNonSerializedListener(this, onNewGame);
+            CampaignEvents.TickEvent.AddNonSerializedListener(this, onTick);
+        }
+
+        private void onTick(float obj)
+        {
+            if (ResourceManager.Instance.IsMapOpen)
+            {
+                if (Input.IsKeyReleased(InputKey.X))
+                {
+                    BuffManager.Instance.AddBuffForHeroAndDuration(Hero.MainHero, "bannerbuff_partyspeedbuff_1", 4f);
+                }
+            }
         }
 
         public static BuffManager Instance
@@ -73,14 +87,18 @@ namespace BannerBuff.Behaviours
         }
 
         private void onNewGame() => this.InitializeBlankState();
-        private void onGameLoaded(CampaignGameStarter obj) => this.InitializeBlankState();
+        private void onGameLoaded(CampaignGameStarter obj) {
+            if (this._dictionary.Count == 0) this.InitializeBlankState();
+            if(!this._dictionary.ContainsKey(Hero.MainHero)) this.InitializeStateForHero(Hero.MainHero);
+        }
 
         private void onHourlyTick()
         {
             foreach (var hero in this._dictionary.Keys)
             {
-                foreach (var buff in this._dictionary[hero].ActiveBuffs.Keys)
+                foreach (var id in this._dictionary[hero].ActiveBuffs.Keys.ToArray())
                 {
+                    var buff = GetBuffByID(id);
                     if (buff != null && buff.BuffCostType == BuffCostType.Continous)
                     {
                         var resource = ResourceManager.Instance.GetResourceForHero(hero);
@@ -88,16 +106,16 @@ namespace BannerBuff.Behaviours
                         {
                             if (resource.CurrentAmount < buff.CostAmount)
                             {
-                                this._dictionary[hero].ActiveBuffs.Remove(buff);
+                                this._dictionary[hero].ActiveBuffs.Remove(buff.stringID);
                                 this.OnActiveBuffRemoved?.Invoke(this, new ActiveBuffsChangedEventArgs { hero = hero, newState = this._dictionary[hero], removedBuffID = buff.stringID });
                                 return;
                             }
                         }
                     }
-                    this._dictionary[hero].ActiveBuffs[buff] -= 1f;
-                    if (this._dictionary[hero].ActiveBuffs[buff] <= 0)
+                    this._dictionary[hero].ActiveBuffs[buff.stringID] -= 1f;
+                    if (this._dictionary[hero].ActiveBuffs[buff.stringID] <= 0)
                     {
-                        this._dictionary[hero].ActiveBuffs.Remove(buff);
+                        this._dictionary[hero].ActiveBuffs.Remove(buff.stringID);
                         this.OnActiveBuffRemoved?.Invoke(this, new ActiveBuffsChangedEventArgs { hero = hero, newState = this._dictionary[hero], removedBuffID = buff.stringID });
                     }
                 }
@@ -108,7 +126,7 @@ namespace BannerBuff.Behaviours
         {
             foreach (var hero in Hero.All)
             {
-                this.InitializeStateForHero(hero);
+                if(this.IsHeroValidForBuffs(hero)) this.InitializeStateForHero(hero);
             }
         }
 
@@ -128,7 +146,7 @@ namespace BannerBuff.Behaviours
             HeroBuffState state = new HeroBuffState();
             foreach (var item in this._registeredbuffs)
             {//TODO might want to alter this behaviour. This auto-assigns all registered buffs to all heroes. Might want to create a learning mechanism.
-                state.KnownBuffs.Add(item.Value);
+                state.KnownBuffs.Add(item.Key);
             }
             return state;
         }
@@ -151,7 +169,7 @@ namespace BannerBuff.Behaviours
         {
             if (this._dictionary.ContainsKey(hero))
             {
-                return this._dictionary[hero].KnownBuffs.Contains(GetBuffByID(buffid));
+                return this._dictionary[hero].KnownBuffs.Contains(buffid);
             }
             else return false;
         }
@@ -160,10 +178,11 @@ namespace BannerBuff.Behaviours
         {
             if (hero != null && this._dictionary.ContainsKey(hero))
             {
-                if (DoesHeroKnowBuff(hero, buffid))
+                if (DoesHeroKnowBuff(hero, buffid) && !this._dictionary[hero].ActiveBuffs.ContainsKey(buffid))
                 {
                     //TODO should check if hero has enough resources for "cast" of a buff
-                    this._dictionary[hero].ActiveBuffs.Add(GetBuffByID(buffid), duration);
+                    //TODO check if the buff is already active, dont try to add it again, but add to the remaining duration.
+                    this._dictionary[hero].ActiveBuffs.Add(buffid, duration);
                 }
             }
         }
@@ -172,7 +191,7 @@ namespace BannerBuff.Behaviours
         {
             if (this._dictionary.ContainsKey(hero))
             {
-                return this._dictionary[hero].ActiveBuffs.ContainsKey(GetBuffByID(buffid));
+                return this._dictionary[hero].ActiveBuffs.ContainsKey(buffid);
             }
             else return false;
         }
@@ -195,8 +214,8 @@ namespace BannerBuff.Behaviours
 
             protected override void DefineContainerDefinitions()
             {
-                ConstructContainerDefinition(typeof(List<Buff>));
-                ConstructContainerDefinition(typeof(Dictionary<Buff, float>));
+                //ConstructContainerDefinition(typeof(List<string>));
+                //ConstructContainerDefinition(typeof(Dictionary<string, float>));
                 ConstructContainerDefinition(typeof(Dictionary<Hero, HeroBuffState>));
             }
         }

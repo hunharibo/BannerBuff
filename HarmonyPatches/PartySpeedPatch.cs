@@ -2,6 +2,7 @@
 using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
+using TaleWorlds.CampaignSystem.Siege;
 using TaleWorlds.Localization;
 
 namespace BannerBuff.HarmonyPatches
@@ -30,6 +31,5 @@ namespace BannerBuff.HarmonyPatches
                 __result.AddLine("Active Speed Buff", 3f, StatExplainer.OperationType.Add);
             }
         }
-
     }
 }

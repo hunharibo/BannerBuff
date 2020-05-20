@@ -1,19 +1,16 @@
 ﻿<Prefab>
-	<Constants>
-
-	</Constants>
 	<Window>
-		<Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" PositionXOffset="-5" PositionYOffset="-70">
+		<Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="250" SuggestedHeight="50" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionXOffset="0" PositionYOffset="-70">
 			<Children>
-				
-				<Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="50" HorizontalAlignment="Left" VerticalAlignment="Center">
+				<Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="SaveLoad\load_tuple" />
+				<Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="leader_frame_9" />
+				<Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="36" SuggestedHeight="36" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="SaveLoad\icon_gold" PositionXOffset="0" />
+				<ButtonWidget Command.Click="onCastClick" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="100" SuggestedHeight="40" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="ButtonBrush" PositionXOffset="10">
 					<Children>
-
-						<TextWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="50" HorizontalAlignment="Left" VerticalAlignment="Center" Text="@ResourceText" />
-						
+						<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush.FontSize="20" Text="Cast" />
 					</Children>
-				</Widget>
-
+				</ButtonWidget>
+				<TextWidget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Text="@ResourceText" PositionXOffset="60" Brush.FontSize="20" />
 			</Children>
 		</Widget>
 	</Window>

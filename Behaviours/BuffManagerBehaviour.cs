@@ -26,6 +26,8 @@ namespace BannerBuff.Behaviours
             CampaignEvents.TickEvent.AddNonSerializedListener(this, onTick);
         }
 
+        internal List<Buff> GetRegisteredBuffList() => this._registeredbuffs.Values.ToList();
+
         private void onTick(float obj)
         {
             if (ResourceManager.Instance.IsMapOpen)
